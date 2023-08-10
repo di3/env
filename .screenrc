@@ -1,0 +1,14 @@
+shell bash             # Tell screen your default shell
+startup_message off    # turn off start message
+vbell off              # no visual
+msgwait 1              # Set messages timeout to one second
+defutf8 on             # utf8
+autodetach on          # on = default
+shelltitle '$ |bash'   # Dynamic window titled for running program
+hardcopydir $HOME      # 
+defscrollback 10000    # Buffer
+defmonitor off         # 
+nethack on             # Turn on nethack error messages
+backtick 0 0 0 whoami  # Set "%0`" to equal the output of "whoami"
+
+hardstatus alwayslastline "%{= KW} [%n %t]  %= @%H %{= wk} %Y-%m-%d %c "
