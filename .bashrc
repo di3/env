@@ -234,62 +234,6 @@ function swap() {
   mv $TMPFILE "$2"
 }
 
-# aextract
-function aextract() {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)  tar xvjf $1;;
-      *.tar.gz)    tar xvzf $1;;
-      *.tar.xz)   tar xvJf $1;;
-      *.tar.7z)   7za x -so $1 | tar xf - --numeric-owner;;
-      *.bz2)      bunzip2 $1;;
-      *.gz)        gunzip $1;;
-      *.tar)      tar xvf $1;;
-      *.tbz2)      tar xvjf $1;;
-      *.tgz)      tar xvzf $1;;
-      *.zip)      unzip $1;;
-      *.Z)        uncompress $1;;
-      *.7z)        7zr x $1;;
-      *) echo "don't know how to extract '$1'" ;;
-    esac
-  else
-    echo "'$1' is not a valid file!"
-  fi
-}
-
-function alist() {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)  tar -jtvf $1;;
-      *.tar.gz)   tar -ztvf $1;;
-      *.gz)       tar -ztf $1;;
-      *.tar)      tar -tf $1;;
-      *.zip)      unzip -l $1;;
-      *.7z)       7z l $1;;
-      *) echo "don't know how to list '$1'" ;;
-    esac
-  else
-    echo "'$1' is not a valid file!"
-  fi
-}
-
-function acreate() {
-  if [ -d $2 ] ; then
-    case $1 in
-      *.tar.gz)   tar -zcvf $1 $2;;
-      *.tar.7z)   tar cf - $2 | 7za a -si $1;;
-      *.gz)       tar -zcvf $1 $2;;
-      *.tar)      tar -cf $1 $2;;
-      *.zip)      7z a -tzip $1 $2;;
-      *.7z)       7z a -t7z $1 $2;;
-      *.tar.7z)       7z a -t7z $1 $2;;
-      *) echo "don't know how to create '$1'" ;;
-    esac
-  else
-    echo "'$1' is not a valid file!"
-  fi
-}
-
 #grep files and open them with vim
 function vg() {
   local usage="vg [path] grepstring"
@@ -313,7 +257,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
